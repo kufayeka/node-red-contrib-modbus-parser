@@ -1,0 +1,15 @@
+{
+  "name": "@kufayeka/modbus-parser",
+  "version": "0.1.0",
+  "author": "kufayeka",
+  "license": "ISC",
+  "description": "Modbus parser for Node-RED",
+  "keywords": ["node-red","node-red-node","modbus","parser"],
+  "main": "modbus-parser.js",
+  "node-red": {
+    "nodes": {
+      "MB-Parser": "modbus-parser.js"
+    }
+  },
+  "dependencies": {}
+}

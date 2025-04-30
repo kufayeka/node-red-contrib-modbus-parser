@@ -1,0 +1,101 @@
+<!-- File: MB-Parser.html -->
+<script type="text/x-red" data-template-name="MB-Parser">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-retweet"></i> Mode</label>
+        <select id="node-input-mode">
+            <option value="R">Read</option>
+            <option value="W">Write</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-dataType"><i class="fa fa-database"></i> Data Type</label>
+        <select id="node-input-dataType">
+            <option value="Int16">INT16</option>
+            <option value="UInt16">UNSIGNED INT16</option>
+            <option value="Int32">INT32</option>
+            <option value="UInt32">UNSIGNED INT32</option>
+            <option value="Float32">FLOAT32</option>
+            <option value="Float64">FLOAT64</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-swapWords"><i class="fa fa-exchange"></i> Swap Words</label>
+        <input type="checkbox" id="node-input-swapWords">
+    </div>
+    <div class="form-row">
+        <label for="node-input-swapBytes"><i class="fa fa-exchange"></i> Swap Bytes</label>
+        <input type="checkbox" id="node-input-swapBytes">
+    </div>
+    <div class="form-row">
+        <label for="node-input-decimals"><i class="fa fa-sort-numeric-asc"></i> Decimals</label>
+        <input type="number" id="node-input-decimals" min="0" placeholder="2">
+    </div>
+
+
+    <div class="divider"></div>
+    <div class="form-row branded">
+        <p>Created by: <strong>@kufayeka</strong></p>
+    </div>
+
+    <style>
+        /* divider */
+        .divider {
+            border-top: 1px solid #ccc;
+            margin: 12px 0;
+        }
+        /* branding box */
+        .branded {
+            background: #2575fc;
+            text-align: center;
+            padding: 6px 0;
+            border-radius: 4px;
+        }
+        .branded p {
+            margin: 0;
+            color: white;
+            font-size: 0.9em;
+            font-family: Arial, sans-serif;
+        }
+        .branded strong {
+            font-weight: bold;
+        }
+    </style>
+</script>
+
+<script type="text/x-red" data-help-name="MB-Parser">
+    <p>Custom node “MB-Parser” untuk Read (register→value) atau Write (value→register).</p>
+    <ul>
+        <li><b>Mode</b>: Read atau Write.</li>
+        <li><b>Data Type</b>: tipe data Int16/UInt16/Int32/UInt32/Float32/Float64.</li>
+        <li><b>Swap Words</b>: toggle urutan register.</li>
+        <li><b>Swap Bytes</b>: toggle byte-swap tiap register.</li>
+        <li><b>Decimals</b>: jumlah angka di belakang koma untuk output float (Read).</li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('MB-Parser',{
+        category: 'function',
+        color: '#a6bbcf',
+        inputs: 1,
+        outputs: 1,
+        icon: 'font-awesome/fa-exchange',
+        align: 'right',
+        defaults: {
+            name:       {value:""},
+            mode:       {value:"R"},
+            dataType:   {value:"Int16"},
+            swapWords:  {value:false},
+            swapBytes:  {value:false},
+            decimals:   {value:2}
+        },
+        label: function() {
+            const base = this.name || "MB-Parser";
+            return `${base} [${this.mode}] [${this.dataType}]`;
+        }
+    });
+</script>
